@@ -41,7 +41,9 @@ def get_text_dimensions(text_string, font):
 
     return (text_width, text_height)
 
-def generateSnapshot(userPhoto, contextPhoto, name, username, tweet, time, date, outName, savePath, commentCount, retweetCount, likeCount):
+def generateSnapshot(name, username, tweet, time, date, outputName, savePath, commentCount, retweetCount, likeCount):
+    userPhoto = "Images\\user_photo.png"
+    contextPhoto = "Images\\context_image.jpg"
     fontName = ImageFont.truetype('Fonts/arial.ttf', 50)
     tweets = textwrap.wrap(tweet, width=34)
     tweet = ""
@@ -71,7 +73,7 @@ def generateSnapshot(userPhoto, contextPhoto, name, username, tweet, time, date,
 
     fontName = ImageFont.truetype('Fonts/arial.ttf', 43)
     userNameText = ImageDraw.Draw(background)
-    userNameText.text((297,offset+91), username, font=fontName, fill=(200, 206, 212))
+    userNameText.text((297,offset+91), ("@"+username), font=fontName, fill=(200, 206, 212))
 
     
     tweetText = ImageDraw.Draw(background)
@@ -132,16 +134,4 @@ def generateSnapshot(userPhoto, contextPhoto, name, username, tweet, time, date,
     shareIcon = shareIcon.resize((54,60), Image.ANTIALIAS)
     background.paste(shareIcon, (904,offset+168 + (height * lineCount) + 695 + 20), mask=shareIcon)
 
-    
-
-
-
-
-
-
-    background.save(savePath + outName + ".png")
-
-
-
-
-
+    background.save(savePath + outputName + ".png")
